@@ -1,0 +1,56 @@
+let categoryContainer = document.getElementById("category-container");
+const categories = ["All",...new Set(products.map((product) => product.category))];
+
+function renderCategoryButtons(){
+  categoryContainer.innerHTML = "";
+  categories.forEach(cat=>{
+    let button = document.createElement("button");
+    button.textContent = cat;
+    button.dataset.category = cat;
+
+    if(cat === "All") button.classList.add("active");
+
+    button.addEventListener("click", (e)=>{
+      document.querySelectorAll("#category-container button").forEach(btn=>btn.classList.remove("active"));
+      e.target.classList.add("active");
+      filterCategory(cat)
+    });
+    categoryContainer.appendChild(button);
+  })
+}
+
+function filterCategory(category){
+  const filteredProducts = category === "All" ? products : products.filter(product=>product.category === category);
+  document.getElementById("product-container").innerHTML = "";
+  renderProducts(filteredProducts);
+}
+renderCategoryButtons();
+
+
+function renderProducts(products) {
+  const productContainer = document.getElementById("product-container");
+
+  products.forEach((product) => {
+    let productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+
+    productCard.innerHTML = `
+              <img src="${product.image}">
+                  <div class="product-info">
+                      <h4 class="product-title">${product.name}</h4>
+                      <p class="product-rating">Rating: ${product.rating}</p>
+                  <div class="bottom">
+                      <p class="product-price">$${product.price}</p>
+                      <button onclick="window.location.href='./productDetails.html?id=${product.id}'" class="btn">Add to Cart</button>
+                  </div>
+                  </div>
+                          `;
+    productContainer.appendChild(productCard);
+  });
+}
+
+renderProducts(products);
+
+function openProduct(id) {
+  window.location.href = `./product.html?id=${id}`;
+}
