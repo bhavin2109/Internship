@@ -231,4 +231,113 @@
   color: white;
 }
 
+.why {
+  width: 100%;
+  padding: 50px 40px;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(pink, white);
+}
+
+.reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  margin-top: 10px;
+}
+
+.reason {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.why-img img {
+  width: 500px;
+  border-radius: 10px;
+}
+
+.reason i {
+  font-size: 1.5rem;
+  color: #1b76ff;
+}
+
+.faqs {
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(cyan,white);
+}
+
+.faq-item {
+  margin: 40px 0;
+}
+
+.faq-item p{
+  max-height: 0;
+  overflow: hidden;
+}
+
+.faq-ques::after {
+  content: "+";
+  float: right;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.faq-ques.active::after {
+  content: "-";
+  font-size: 1.5rem;
+  transform: rotate(180deg);
+  cursor: pointer; 
+}
+
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 40px;
+  gap: 15px;
+  background: linear-gradient(rgb(246, 255, 179), white);
+}
+.footer-section {
+  display: block;
+  max-width: 250px;
+  height: auto;
+}
+.footer-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #222;
+}
+.footer-section a {
+  display: block;
+  margin: 8px 0;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.95rem;
+}
+.footer-section a:hover {
+  color: #27313f;
+}
+
+.footer-section p {
+  color:  #1b76ff;
+  margin-top: 10px;
+}
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  background: #0d1b2a;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.about-us-p {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.8;
+}
 

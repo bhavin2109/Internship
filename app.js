@@ -1,31 +1,38 @@
 let categoryContainer = document.getElementById("category-container");
-const categories = ["All",...new Set(products.map((product) => product.category))];
+const categories = [
+  "All",
+  ...new Set(products.map((product) => product.category)),
+];
 
-function renderCategoryButtons(){
+function renderCategoryButtons() {
   categoryContainer.innerHTML = "";
-  categories.forEach(cat=>{
+  categories.forEach((cat) => {
     let button = document.createElement("button");
     button.textContent = cat;
     button.dataset.category = cat;
 
-    if(cat === "All") button.classList.add("active");
+    if (cat === "All") button.classList.add("active");
 
-    button.addEventListener("click", (e)=>{
-      document.querySelectorAll("#category-container button").forEach(btn=>btn.classList.remove("active"));
+    button.addEventListener("click", (e) => {
+      document
+        .querySelectorAll("#category-container button")
+        .forEach((btn) => btn.classList.remove("active"));
       e.target.classList.add("active");
-      filterCategory(cat)
+      filterCategory(cat);
     });
     categoryContainer.appendChild(button);
-  })
+  });
 }
 
-function filterCategory(category){
-  const filteredProducts = category === "All" ? products : products.filter(product=>product.category === category);
+function filterCategory(category) {
+  const filteredProducts =
+    category === "All"
+      ? products
+      : products.filter((product) => product.category === category);
   document.getElementById("product-container").innerHTML = "";
   renderProducts(filteredProducts);
 }
 renderCategoryButtons();
-
 
 function renderProducts(products) {
   const productContainer = document.getElementById("product-container");
@@ -54,3 +61,18 @@ renderProducts(products);
 function openProduct(id) {
   window.location.href = `./product.html?id=${id}`;
 }
+
+let faqs = document.querySelectorAll(".faq-ques");
+faqs.forEach((faq) => {
+  faq.addEventListener("click", () => {
+    let answer = faq.nextElementSibling;
+    if (answer.style.maxHeight) {
+      answer.style.maxHeight = null;
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+    faq.classList.toggle("active");
+  });
+});
+
+
