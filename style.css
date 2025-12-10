@@ -235,6 +235,7 @@
   width: 100%;
   padding: 50px 40px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background: linear-gradient(pink, white);
 }
