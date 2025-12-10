@@ -66,21 +66,26 @@
 
       #product-detail-container button {
         margin-top: auto;
-        background: #007bff;
+        background: #7f7f7f;
         color: #fff;
         border: none;
         border-radius: 8px;
         padding: 12px 24px;
         font-size: 1rem;
         cursor: pointer;
-        transition: background 0.3s ease;
+        transition: background 0.5s ease;
+      }
+
+      #product-detail-container button:hover {
+        background: #000000;
       }
     </style>
   </head>
   <body>
     <div id="product-detail-container"></div>
-
+    <script src="./app.js"></script>
     <script src="products.js"></script>
+
     <script>
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
@@ -97,11 +102,26 @@
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
                 <p>Price: $${product.price}</p>
-                <button onclick=addToCart(${product.id})>Add to Cart</button>
+                <button class="add-to-cart" onclick=addToCart(${product.id})>Add to Cart</button>
             `;
       } else {
         productDetailContainer.innerHTML = "<p>Product not found.</p>";
       }
+
+      let addToCart = (productId) => {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existingProduct = cart.find((item) => item.id === productId);
+
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          cart.push({ id: productId, quantity: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log("Product added to cart:", productId);
+        updateCartCount();
+      };
     </script>
   </body>
 </html>

@@ -48,7 +48,7 @@ function renderProducts(products) {
                       <p class="product-rating">Rating: ${product.rating}</p>
                   <div class="bottom">
                       <p class="product-price">$${product.price}</p>
-                      <button onclick="window.location.href='./productDetails.html?id=${product.id}'" class="btn">Add to Cart</button>
+                      <button onclick="window.location.href='./productDetails.html?id=${product.id}'" class="btn">View Product</button>
                   </div>
                   </div>
                           `;
@@ -75,4 +75,13 @@ faqs.forEach((faq) => {
   });
 });
 
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartCountElement = document.querySelector(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = cartCount;
+  }
+}
 
+updateCartCount();
