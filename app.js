@@ -85,3 +85,44 @@ function updateCartCount() {
 }
 
 updateCartCount();
+
+const loginBtn = document.getElementById("login-btn");
+const loginModal = document.querySelector(".login-container");
+const closeBtn = document.querySelector(".close-btn");
+const loginForm = loginModal.querySelector("form");
+const submitBtn = document.getElementById("submit");
+
+let isAuth = false;
+
+loginBtn.addEventListener("click", () => {
+  loginModal.style.display = "flex";
+});
+
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+  if (username === "bhavin" && password === "bhavin") {
+    isAuth = true;
+    loginModal.style.display = "none";
+    loginBtn.innerHTML = `Logout`;
+    setTimeout(() => {
+      window.alert("LoggedIn Successfully");
+    }, 10);
+  } else {
+    setTimeout(() => {
+      window.alert("Invalid Login Credentials");
+    }, 10);
+  }
+});
+
+closeBtn.addEventListener("click", () => {
+  loginModal.style.display = "none";
+});
+
+loginModal.addEventListener("click", (e) => {
+  if (e.target === loginModal) {
+    loginModal.style.display = "none";
+  }
+});
